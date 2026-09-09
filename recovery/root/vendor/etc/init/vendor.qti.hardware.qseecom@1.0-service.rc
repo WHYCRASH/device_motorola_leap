@@ -1,0 +1,9 @@
+# Adapted for recovery from vendor/etc/init/vendor.qti.hardware.qseecom@1.0-service.rc.
+service qseecom-service /vendor/bin/hw/vendor.qti.hardware.qseecom@1.0-service
+    class hal
+    user root
+    group root drmrpc
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/sbin
+    disabled
+    seclabel u:r:recovery:s0
+    interface aidl vendor.qti.hardware.qseecom

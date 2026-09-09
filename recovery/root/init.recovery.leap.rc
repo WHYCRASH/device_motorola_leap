@@ -1,0 +1,12 @@
+# leap: bring up the SPU decrypt stack after TWRP loads vendor_dlkm modules.
+on property:twrp.modules.loaded=true
+    mkdir /firmware
+    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
+    wait /sys/class/power_supply/battery
+    start vendor.qseecomd
+    start qseecom-service
+    start vendor.keymint-spu-qti
+    start vendor.gatekeeper_spu
+    start vendor.spu_weaver
+    umount /firmware
+    start vendor.health-recovery

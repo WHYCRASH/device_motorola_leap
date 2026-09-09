@@ -1,0 +1,11 @@
+# Adapted for recovery from vendor/etc/init/android.hardware.weaver-service-spu-qti.rc.
+# Stock gates on ro.boot.product.vendor.sku={pineapple,sun}; recovery forces
+# the start after vendor modules load (see init.recovery.leap.rc).
+service vendor.spu_weaver /vendor/bin/hw/android.hardware.weaver-service-spu-qti
+    disabled
+    class hal
+    user root
+    group root drmrpc
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/sbin
+    capabilities WAKE_ALARM
+    seclabel u:r:recovery:s0

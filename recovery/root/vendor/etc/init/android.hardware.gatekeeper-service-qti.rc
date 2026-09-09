@@ -1,0 +1,9 @@
+# Adapted for recovery from the stock leap dump (peridot pattern:
+# root + recovery secontext + explicit vendor LD_LIBRARY_PATH).
+service vendor.gatekeeper_default /vendor/bin/hw/android.hardware.gatekeeper-service-qti
+    class early_hal
+    user root
+    group root 
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw:/system/lib64:/sbin
+    disabled
+    seclabel u:r:recovery:s0
